@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: radial-gradient(circle, #ffdde1, #ee9ca7);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 350px;
+            transform: rotate(-5deg);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .title {
+            color: teal;
+            font-size: 22px;
+            font-weight: bold;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .subtitle {
+            color: red;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: fadeIn 2.5s ease-in-out;
+        }
+
+        .message {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.5;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        .emoji {
+            font-size: 20px;
+        }
+
+        .signature {
+            color: navy;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Floating Effect */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(-5deg);
+            }
+        }
+
+        /* Fade-in Effect */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Glowing Heart Effect */
+        .signature::before {
+            content: "♥";
+            color: red;
+            font-size: 22px;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 1;
+            }
+        }
+
+        /* Heart Confetti */
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Falling Hearts Animation -->
+    <div class="hearts"></div>
+
+    <div class="card">
+        <div class="title">I M HAPPY</div>
+
+        <div class="title">YOU'RE NOT A FOSSIL! (YET)</div>
+        <div class="subtitle">(HAPPY VALENTINE'S DAY)</div>
+        <p class="message">
+            Dear Vaisu,<br><br>
+            Let's see...<br>
+            You're never around me,<br>
+            But I want you constantly.<br>
+            Your presence makes me happy,<br>
+            I want you for eternity.<br>
+            Will you be my valentine?<br>
+            Cause your virtual hug makes me shine <span class="emoji">😊</span><br><br>
+            Happy Valentine's Day Moti!<br><br>
+            <span class="signature">Newar</span>
+        </p>
+    </div>
+
+    <script>
+        // Generate Falling Hearts
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            document.querySelector(".hearts").appendChild(heart);
+
+            // Random position and animation duration
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+
+            // Remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+</html>
